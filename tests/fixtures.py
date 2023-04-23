@@ -1,8 +1,13 @@
+import os
+
 import pytest
 from requests_module import NewsRequester
 from requests_module.parsing import ArticleLinkParser
 from selenium_module.browse import DriverFactory
 from config.selenium_config import BROWSER
+from config import db_config
+from config import BASE_PATH
+from db.utils import MigrationExecutor, ConnectionFactory
 
 
 @pytest.fixture(scope='session')
@@ -25,3 +30,13 @@ def browser():
     factory = DriverFactory(**BROWSER)
     yield factory.browser
     factory.browser.close()
+
+
+@pytest.fixture
+def db():
+    db_config.DATABASE['name'] = 'TEST_DB.sqlite3'
+    MigrationExecutor().run()
+    connection = ConnectionFactory()
+    yield connection.db
+    connection.db.close()
+    os.remove(BASE_PATH / db_config.DATABASE['name'])

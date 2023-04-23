@@ -140,3 +140,4 @@ dmypy.json
 .bak
 .dat
 .dir
+*.sqlite3
