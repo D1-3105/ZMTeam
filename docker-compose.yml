@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+    image: zmteamimage
+    volumes:
+      - ./:/ZMTeam
+    stdin_open: true # docker run -i

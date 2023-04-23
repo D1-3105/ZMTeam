@@ -1,0 +1,1 @@
+from .NewsRequester import NewsRequester
