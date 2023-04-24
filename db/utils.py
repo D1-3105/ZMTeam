@@ -132,6 +132,7 @@ class ConnectionFactory:
 
     def __init__(self, database=DATABASE):
         self._db = sqlite3.connect(BASE_PATH/database['name'])
+        print('CONNECTED TO DB')
 
     @property
     def db(self):
@@ -196,6 +197,9 @@ class QueryExecutor(Operation):
         result = super(QueryExecutor, self).run()
         self.clean()
         return result
+
+    def close(self):
+        self.connection.close()
 
 
 def query(func):

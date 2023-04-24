@@ -1,6 +1,6 @@
 import sqlite3
 from db.utils import Migration, ConnectionFactory
-from db.crud import TableCreation
+from db.crud import CookieProfileTable
 
 
 class FirstMigration(Migration):
@@ -12,8 +12,8 @@ class FirstMigration(Migration):
         super().__init__(connection)
 
     def create(self):
-        object_creation = TableCreation(self.connection)
-        callbacks = self.detect_property(TableCreation)
+        object_creation = CookieProfileTable(self.connection)
+        callbacks = self.detect_property(CookieProfileTable)
 
         def wrap(callback_list):
             for callback in callback_list:

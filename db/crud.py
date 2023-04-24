@@ -2,7 +2,7 @@ import sqlite3
 from .utils import query
 
 
-class TableCreation:
+class CookieProfileTable:
     connection: sqlite3.Connection
 
     def __init__(self, connection: sqlite3.Connection):
