@@ -10,7 +10,7 @@ def test_news_parse(news_ses):
     data = resp.content
     url_parser = ArticleLinkParser()
     url_parser.feed(data.decode())
-    print(url_parser.articles)
+    print('LEN', len(url_parser.articles))
     assert len(url_parser.articles) != 0
     one_of_articles = url_parser.articles.pop()
     resp = ses.request_article(one_of_articles)

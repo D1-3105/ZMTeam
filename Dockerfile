@@ -6,6 +6,7 @@ RUN pip install -r ZMTeam/requirements.txt
 
 COPY . /ZMTeam
 WORKDIR /ZMTeam
+ENV PYTHONPATH "${PYTHONPATH}:/ZMTeam"
 
 #RUN apk update && apk upgrade
 #RUN apk add unzip

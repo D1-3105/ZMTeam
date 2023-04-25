@@ -9,4 +9,5 @@ services:
       - ./:/ZMTeam
     stdin_open: true # docker run -i
     command:
-      sh -c "/bin/bash && export PYTHONPATH="${PYTHONPATH}:/ZMTeam""
+      sh -c "python db/run_migrations.py && /bin/bash"
+

@@ -29,3 +29,5 @@ if __name__ == '__main__':
             )
             futures.append(future)
         results = [f() for f in futures]
+        pool_executor._factory.join()
+

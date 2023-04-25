@@ -4,17 +4,18 @@ from .utils import QueryExecutor, ConnectionFactory
 from .crud import (
     select_profile_query,
     create_profile_query,
-    update_profile_query,
-    exists_profile_query
+    update_profile_query
 )
+from urllib.parse import urlparse
 
 
 class CookieHandler:
 
-    def __init__(self, domain, con_factory=None):
+    def __init__(self, url, con_factory=None):
         self._con_fact = con_factory or ConnectionFactory()
         self.executor = QueryExecutor(self._con_fact.db)
-        self.domain = domain
+        url = urlparse(url)
+        self.domain = url.netloc
 
     def get_by_domain(self, *fields):
         select = select_profile_query(
@@ -42,7 +43,6 @@ class CookieHandler:
 
     def __call__(self, cookies):
         """
-            :param domain: fqdn
             :param cookies: cookies as {"name": "value"} dict
             :return: None
         """

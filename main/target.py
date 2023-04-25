@@ -94,7 +94,6 @@ class Target:
         if self._driver:
             try:
                 self._driver.quit()
-                self._driver.close()
             except urllib3.exceptions.MaxRetryError as e:
                 print(e)
         if self._cookie_handler:
